@@ -2,20 +2,20 @@ import { Product } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
-interface productsProps {
-    products: Product[];
+interface ProductsProps {
+  products: Product[];
 }
 
-const Products = ({products}: productsProps) => {
-    return ( 
-        <div className="space-y-3 px-5">
-            {products.map(product => (
-                <Link 
-                key={product.id} 
-                href="/" 
-                className="flex items-center justify-between gap-10 py-3 border-b py-3"
-                >
-                 {/* ESQUERDA */}
+const Products = ({ products }: ProductsProps) => {
+  return (
+    <div className="space-y-3 px-5">
+      {products.map((product) => (
+        <Link
+          key={product.id}
+          href="/"
+          className="flex items-center justify-between gap-10 border-b py-3"
+        >
+          {/* ESQUERDA */}
           <div>
             <h3 className="text-sm font-medium">{product.name}</h3>
             <p className="line-clamp-2 text-sm text-muted-foreground">
@@ -28,8 +28,9 @@ const Products = ({products}: productsProps) => {
               }).format(product.price)}
             </p>
           </div>
-           {/* DIREITA */}
-           <div className="relative min-h-[82px] min-w-[120px]">
+
+          {/* DIREITA */}
+          <div className="relative min-h-[82px] min-w-[120px]">
             <Image
               src={product.imageUrl}
               alt={product.name}
@@ -37,11 +38,10 @@ const Products = ({products}: productsProps) => {
               className="rounded-lg object-contain"
             />
           </div>
-                    
-                </Link>
-            ))}   
-        </div>
-     );
-}
- 
+        </Link>
+      ))}
+    </div>
+  );
+};
+
 export default Products;
